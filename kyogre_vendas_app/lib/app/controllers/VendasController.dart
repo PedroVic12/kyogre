@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/models/Vendas.dart';
+import 'package:kyogre_vendas_app/app/models/Vendas.dart';
 
 class VendasController extends GetxController {
   List<Vendas> itensVenda = <Vendas>[

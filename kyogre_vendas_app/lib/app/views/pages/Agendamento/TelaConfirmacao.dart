@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/EventosController.dart';
-import 'package:rayquaza_cadastro_app/app/models/Appoinment.dart';
-import 'package:rayquaza_cadastro_app/app/models/Service/Service.dart';
+import 'package:kyogre_vendas_app/app/controllers/EventosController.dart';
+import 'package:kyogre_vendas_app/app/models/Appoinment.dart';
+import 'package:kyogre_vendas_app/app/models/Service/Service.dart';
 
 // Página para o agendamento
 class TelaConfirmacao extends StatelessWidget {

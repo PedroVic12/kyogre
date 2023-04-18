@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/BarraInferior.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/BarraPesquisa.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/VendasController.dart';
-import 'package:rayquaza_cadastro_app/app/models/Produto.dart';
-import 'package:rayquaza_cadastro_app/app/models/Vendas.dart';
+import 'package:kyogre_vendas_app/app/Widgets/BarraInferior.dart';
+import 'package:kyogre_vendas_app/app/Widgets/BarraPesquisa.dart';
+import 'package:kyogre_vendas_app/app/controllers/VendasController.dart';
+import 'package:kyogre_vendas_app/app/models/Produto.dart';
+import 'package:kyogre_vendas_app/app/models/Vendas.dart';
 
 class ListaDeVendas extends StatefulWidget {
   const ListaDeVendas({Key? key}) : super(key: key);
@@ -95,6 +95,7 @@ class _ListaDeVendasState extends State<ListaDeVendas> {
       ),
     );
   }
+
 }
 
 //! Teste controller baseado no video

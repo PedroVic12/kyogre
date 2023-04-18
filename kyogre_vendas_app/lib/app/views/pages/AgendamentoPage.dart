@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/AgendamentoController.dart';
-import 'package:rayquaza_cadastro_app/app/models/Appoinment.dart';
+import 'package:kyogre_vendas_app/app/controllers/AgendamentoController.dart';
+import 'package:kyogre_vendas_app/app/models/Appoinment.dart';
 
 class AgendamentoPage extends StatelessWidget {
   final AgendamentoController controller = Get.put(AgendamentoController());

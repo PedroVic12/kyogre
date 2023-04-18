@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/models/Horarios.dart';
+import 'package:kyogre_vendas_app/app/models/Horarios.dart';
 
 class AgendamentoController extends GetxController {
   final horarios = <String>[].obs;

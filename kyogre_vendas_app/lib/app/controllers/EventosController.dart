@@ -1,6 +1,6 @@
 // Controlador para o agendamento
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/models/Service/Service.dart';
+import 'package:kyogre_vendas_app/app/models/Service/Service.dart';
 import '../models/Appoinment.dart';
 
 class EventosController extends GetxController {

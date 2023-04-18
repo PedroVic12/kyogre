@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/ProductCard.dart';
+import 'package:kyogre_vendas_app/app/Widgets/ProductCard.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});

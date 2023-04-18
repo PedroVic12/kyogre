@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/BarraNavegacao.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/BarraPesquisa.dart';
-import 'package:rayquaza_cadastro_app/app/Widgets/RefreshButton.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/ClienteController.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/ModalController.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/NavigationController.dart';
-import 'package:rayquaza_cadastro_app/app/models/Appoinment.dart';
-import 'package:rayquaza_cadastro_app/app/models/Service/Service.dart';
-import 'package:rayquaza_cadastro_app/app/views/pages/AddProduto.dart';
-import 'package:rayquaza_cadastro_app/app/views/pages/Agendamento/AgendarServicopage.dart';
-import 'package:rayquaza_cadastro_app/app/views/pages/Agendamento/TelaConfirmacao.dart';
-import 'package:rayquaza_cadastro_app/app/views/pages/AgendamentoPage.dart';
-import 'package:rayquaza_cadastro_app/app/views/pages/ListaDeVendas.dart';
-import 'package:rayquaza_cadastro_app/app/views/ui/CartPage.dart';
+import 'package:kyogre_vendas_app/app/Widgets/BarraNavegacao.dart';
+import 'package:kyogre_vendas_app/app/Widgets/BarraPesquisa.dart';
+import 'package:kyogre_vendas_app/app/Widgets/RefreshButton.dart';
+import 'package:kyogre_vendas_app/app/controllers/ClienteController.dart';
+import 'package:kyogre_vendas_app/app/controllers/ModalController.dart';
+import 'package:kyogre_vendas_app/app/controllers/NavigationController.dart';
+import 'package:kyogre_vendas_app/app/models/Appoinment.dart';
+import 'package:kyogre_vendas_app/app/models/Service/Service.dart';
+import 'package:kyogre_vendas_app/app/views/pages/AddProduto.dart';
+import 'package:kyogre_vendas_app/app/views/pages/Agendamento/AgendarServicopage.dart';
+import 'package:kyogre_vendas_app/app/views/pages/Agendamento/TelaConfirmacao.dart';
+import 'package:kyogre_vendas_app/app/views/pages/AgendamentoPage.dart';
+import 'package:kyogre_vendas_app/app/views/pages/ListaDeVendas.dart';
+import 'package:kyogre_vendas_app/app/views/ui/CartPage.dart';
 
 // 2::22 tutorial preciso fazer essa nova tela
 

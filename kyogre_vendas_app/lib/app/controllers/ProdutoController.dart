@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/models/Produto.dart';
+import 'package:kyogre_vendas_app/app/models/Produto.dart';
 
 class ProdutoController extends GetxController {
   final Produto _produto = Produto(nome: 'Produto X', descricao: 'Descrição do Produto X', preco: 10.99, data: DateTime.now(), quantidade: 5);

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/ClienteController.dart';
+import 'package:kyogre_vendas_app/app/controllers/ClienteController.dart';
 
 class AdicionarVendaPage extends StatelessWidget {
   final ClienteController controller_cliente = Get.put(ClienteController());

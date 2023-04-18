@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:rayquaza_cadastro_app/app/controllers/ProdutoController.dart';
-import 'package:rayquaza_cadastro_app/app/models/Cliente.dart';
-import 'package:rayquaza_cadastro_app/app/models/Produto.dart';
+import 'package:kyogre_vendas_app/app/controllers/ProdutoController.dart';
+import 'package:kyogre_vendas_app/app/models/Cliente.dart';
+import 'package:kyogre_vendas_app/app/models/Produto.dart';
 
 final db = Db('mongodb://localhost:27017/meu_banco_de_dados');
 
