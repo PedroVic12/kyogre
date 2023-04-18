@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:kyogre_vendas_app/app/controllers/ProdutoController.dart';
 import 'package:kyogre_vendas_app/app/models/Cliente.dart';
 import 'package:kyogre_vendas_app/app/models/Produto.dart';
+import 'package:http/http.dart' as http;
 
 final db = Db('mongodb://localhost:27017/meu_banco_de_dados');
 
@@ -16,6 +19,20 @@ class ClienteController extends GetxController {
   final servicos = <String>[].obs;
   final preco = 0.0.obs;
   final data = DateTime.now().obs;
+
+  // Métodos Backend
+  Future<Map<String, dynamic>> criarCliente(Cliente cliente) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:8000/clientes'),
+      body: json.encode(cliente.toJson()),
+      headers: {'Content-Type': 'application/json'},
+    );
+    if (response.statusCode == 201) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Erro ao criar cliente');
+    }
+  }
 
   // Opções
   final opcoesServicos = [

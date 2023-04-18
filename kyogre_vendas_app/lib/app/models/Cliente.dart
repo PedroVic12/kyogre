@@ -20,6 +20,8 @@ class Cliente {
     };
   }
 
+  Object? toJson() {}
+
 
 
 }
