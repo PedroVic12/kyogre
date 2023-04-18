@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:rayquaza_cadastro_app/app/models/Service/Service.dart';
+import 'package:kyogre_vendas_app/app/models/Service/Service.dart';
 
 class Reserva {
   final services = <Service>[].obs;
