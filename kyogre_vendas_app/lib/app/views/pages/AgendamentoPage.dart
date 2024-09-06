@@ -54,7 +54,7 @@ class ProductCard extends StatelessWidget {
                   height: 100,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,43 +103,75 @@ class Horario {
 class AgendamentoController extends GetxController {
   var diaSelecionado = ''.obs;
   var nomePet = ''.obs;
-  var horarioSelecionado = ''.obs;
+  var horarioSelecionado = <String>[].obs; // Pode ser uma lista de horários
+  var servicosSelecionados = <String>[].obs; // Lista de serviços selecionados
 
   final horarios = <String, List<Horario>>{
     "Segunda": [
-      Horario(hora: '09:00', isDisponivel: true),
-      Horario(hora: '11:00', isDisponivel: false),
-      Horario(hora: '15:00', isDisponivel: false),
-    ],
-    "Terça": [
       Horario(hora: '09:00', isDisponivel: false),
+      Horario(hora: '10:00', isDisponivel: true),
+      Horario(hora: '11:00', isDisponivel: false),
+      Horario(hora: '12:00', isDisponivel: false),
       Horario(hora: '11:00', isDisponivel: false),
       Horario(hora: '15:00', isDisponivel: true),
     ],
+    "Terça": [
+      Horario(hora: '09:00', isDisponivel: false),
+      Horario(hora: '10:00', isDisponivel: true),
+      Horario(hora: '11:00', isDisponivel: false),
+      Horario(hora: '12:00', isDisponivel: false),
+      Horario(hora: '15:00', isDisponivel: true),
+    ],
     "Quarta": [
-      Horario(hora: '10:00', isDisponivel: false),
+      Horario(hora: '09:00', isDisponivel: false),
+      Horario(hora: '10:00', isDisponivel: true),
+      Horario(hora: '11:00', isDisponivel: false),
+      Horario(hora: '12:00', isDisponivel: false),
       Horario(hora: '14:00', isDisponivel: true),
       Horario(hora: '16:00', isDisponivel: false),
     ],
     "Quinta": [
-      Horario(hora: '09:00', isDisponivel: true),
-      Horario(hora: '11:00', isDisponivel: true),
+      Horario(hora: '09:00', isDisponivel: false),
+      Horario(hora: '10:00', isDisponivel: true),
+      Horario(hora: '11:00', isDisponivel: false),
+      Horario(hora: '12:00', isDisponivel: false),
+      Horario(hora: '14:00', isDisponivel: true),
       Horario(hora: '15:00', isDisponivel: false),
     ],
     "Sexta": [
       Horario(hora: '09:00', isDisponivel: false),
-      Horario(hora: '11:00', isDisponivel: true),
+      Horario(hora: '10:00', isDisponivel: true),
+      Horario(hora: '11:00', isDisponivel: false),
+      Horario(hora: '12:00', isDisponivel: false),
       Horario(hora: '15:00', isDisponivel: false),
     ],
     // Adicione mais dias e horários conforme necessário
   }.obs;
+
+  double get total {
+    // Exemplo de cálculo total com base em preços fictícios
+    double precoServico = 50.0; // Preço por serviço selecionado
+    return servicosSelecionados.length * precoServico;
+  }
 
   void selecionarDia(String dia) {
     diaSelecionado.value = dia;
   }
 
   void selecionarHorario(String horario) {
-    horarioSelecionado.value = horario;
+    if (horarioSelecionado.contains(horario)) {
+      horarioSelecionado.remove(horario);
+    } else {
+      horarioSelecionado.add(horario);
+    }
+  }
+
+  void selecionarServico(String servico) {
+    if (servicosSelecionados.contains(servico)) {
+      servicosSelecionados.remove(servico);
+    } else {
+      servicosSelecionados.add(servico);
+    }
   }
 }
 
@@ -150,7 +182,7 @@ class AgendamentoPage extends StatefulWidget {
 
 class _AgendamentoPageState extends State<AgendamentoPage> {
   final AgendamentoController controller = Get.put(AgendamentoController());
-  String? selectedProduct;
+  String selectedProduct = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,7 +245,7 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
 
   Widget _buildDiaDaSemanaSelection() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ...[
           "Segunda",
@@ -238,14 +270,17 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
   }
 
   Widget _buildNomePetField() {
-    return TextField(
-      decoration: const InputDecoration(
-        labelText: 'Nome do Pet',
-        border: OutlineInputBorder(),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: TextField(
+        decoration: const InputDecoration(
+          labelText: 'Nome do Pet',
+          border: OutlineInputBorder(),
+        ),
+        onChanged: (value) {
+          controller.nomePet.value = value;
+        },
       ),
-      onChanged: (value) {
-        controller.nomePet.value = value;
-      },
     );
   }
 
@@ -258,7 +293,11 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
             : null,
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.white,
-          backgroundColor: horario.isDisponivel ? Colors.green : Colors.grey,
+          backgroundColor: controller.horarioSelecionado.contains(horario.hora)
+              ? Colors.deepOrange // Cor quando o horário está selecionado
+              : horario.isDisponivel
+                  ? Colors.green
+                  : Colors.grey,
         ),
         child: Text(horario.hora),
       ),
@@ -322,119 +361,150 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
   }
 
   Widget cardResumoAgendamento() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 3,
-              blurRadius: 10,
-              offset: const Offset(0, 3),
-            ),
-          ],
+    return Obx(() {
+      final servicos = controller.servicosSelecionados.toList().join(', ');
+      final total = controller.total;
+
+      print("Serviços: $servicos ($selectedProduct) e Total= $total");
+
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 3,
+                blurRadius: 10,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Nome do Pet',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      controller.nomePet.value,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(color: Colors.black),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Dia Selecionado',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      controller.diaSelecionado.value,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(color: Colors.black),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Horários Selecionados',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      controller.horarioSelecionado.join(', '),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(color: Colors.black),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Serviços Selecionados',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    Text(
+                      selectedProduct!,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(color: Colors.black),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Total a Comprar:',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'R\$ ${total.toStringAsFixed(2)}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-        child: const Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Itens do Carrinho',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  Text(
-                    '10',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.black),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total a compra: ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  Text(
-                    'R\$ 150,00',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.black),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Custo de Delivery',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  Text(
-                    'R\$ 20,00',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.black),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total a compra: ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'R\$ 170,00',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+      );
+    });
   }
 }
