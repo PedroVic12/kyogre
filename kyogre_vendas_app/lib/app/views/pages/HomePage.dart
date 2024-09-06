@@ -51,9 +51,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: const Center(child: Text('Aplicativo de Lista de Vendas')),
-        backgroundColor: Colors.indigo[900],
+        backgroundColor: Colors.indigo,
       ),
 
       //! Barra de Navegação
@@ -100,7 +99,6 @@ class _HomePageState extends State<HomePage> {
                 Get.to(() => const ListaDeVendas());
               },
             ),
-
           ],
         ),
       ),
@@ -128,11 +126,9 @@ class _HomePageState extends State<HomePage> {
           selectedItemColor: Colors.purple,
           items: const [
             BottomNavigationBarItem(
-
                 icon: Icon(Icons.home),
                 label: 'Home',
                 backgroundColor: Colors.red),
-
             BottomNavigationBarItem(
               icon: Icon(Icons.dashboard),
               label: 'Pagina de Vendas',
@@ -154,7 +150,10 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   ListTile(
                     onTap: () {},
-                    leading: const Icon(Icons.attach_money_rounded, size: 35,),
+                    leading: const Icon(
+                      Icons.attach_money_rounded,
+                      size: 35,
+                    ),
                     title: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text('Pedro'),
@@ -163,7 +162,6 @@ class _HomePageState extends State<HomePage> {
                       padding: EdgeInsets.all(3.0),
                       child: Text('(0) Produtos - 31/03/2023 - 16:48'),
                       //child: Text('({servicos.lenght}) - {31/03/2023} - {16:48}'),
-
                     ),
                     trailing: PopupMenuButton(
                       itemBuilder: (context) => [
@@ -217,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                                       //subtitle: Text(cliente.servicos.join(", ")),
                                       subtitle: Text(
                                           cliente.preco.toStringAsFixed(2)),
-                                      trailing:  PopupMenuButton(
+                                      trailing: PopupMenuButton(
                                         itemBuilder: (context) => [
                                           const PopupMenuItem(
                                             value: AboutDialog(),
@@ -229,8 +227,8 @@ class _HomePageState extends State<HomePage> {
                                           )
                                         ],
                                       ),
-                                      onTap: (){
-                                        Get.to(()=> ListaDeVendas());
+                                      onTap: () {
+                                        Get.to(() => ListaDeVendas());
                                       },
                                     );
                                   },

@@ -22,80 +22,78 @@ class _ListaDeVendasState extends State<ListaDeVendas> {
     // Exibindo na tela
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de Vendas'),
+        title: const Text('Lista de Vendas'),
       ),
       bottomNavigationBar: BarraInferior(
           itensVenda: vendasController.itensVenda,
           precoTotal: vendasController.precoTotal,
           vendidos: vendasController.itensVenda.length),
-      body:
-
-
-      SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-
-            Padding(
-              padding: EdgeInsets.only(right: 200, top: 10),
-              child: Text('Cliente: Pedro Victor', style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            const Padding(
+              padding: const EdgeInsets.only(right: 200, top: 10),
+              child: Text(
+                'Cliente: Pedro Victor',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
 
             Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: SearchBar(
                 onChanged: (value) {
                   setState(() {
                     vendasController.itensVenda = vendasController.itensVenda
                         .where((element) =>
-                        element.nome_venda.toLowerCase().contains(value))
+                            element.nome_venda.toLowerCase().contains(value))
                         .toList();
                   });
                 },
               ),
             ),
 
-            ElevatedButton(onPressed: (){}, child: const Icon(Icons.add_circle_rounded)),
-
-
+            ElevatedButton(
+                onPressed: () {}, child: const Icon(Icons.add_circle_rounded)),
 
             // Exibindo a lista de vendas
             Container(
-              child: Expanded(child: ListView.builder(itemBuilder: (context, index) {
-                // Instanciando o objeto para acessar seus atributos
-                Vendas venda_cliente;
+              child: Expanded(
+                child: ListView.builder(itemBuilder: (context, index) {
+                  // Instanciando o objeto para acessar seus atributos
+                  Vendas venda_cliente;
 
-                // Verificando se o índice é válido
-                if (index < vendasController.itensVenda.length) {
-                  venda_cliente = vendasController.itensVenda[index];
+                  // Verificando se o índice é válido
+                  if (index < vendasController.itensVenda.length) {
+                    venda_cliente = vendasController.itensVenda[index];
 
-                  // Exibindo na tela
-                  return ListTile(
-                      title: Text(venda_cliente.nome_venda),
-                      subtitle: Text(venda_cliente.preco.toString()),
-                      trailing: Checkbox(
-                        value: venda_cliente.vendido,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            venda_cliente.vendido = value!;
-                          });
-                        },
-                      ));
-                } else {
-                  // índice inválido, fazer algo aqui (como lançar uma exceção)
-                  print('Erro ao buscar');
-                }
-              }),
+                    // Exibindo na tela
+                    return ListTile(
+                        title: Text(venda_cliente.nome_venda),
+                        subtitle: Text(venda_cliente.preco.toString()),
+                        trailing: Checkbox(
+                          value: venda_cliente.vendido,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              venda_cliente.vendido = value!;
+                            });
+                          },
+                        ));
+                  } else {
+                    // índice inválido, fazer algo aqui (como lançar uma exceção)
+                    print('Erro ao buscar');
+                  }
+                }),
               ),
             ),
 
-
-            Dismissible(key: UniqueKey(), child: Text('Deslize para apagar'))
+            Dismissible(
+                key: UniqueKey(), child: const Text('Deslize para apagar'))
           ],
         ),
       ),
     );
   }
-
 }
 
 //! Teste controller baseado no video

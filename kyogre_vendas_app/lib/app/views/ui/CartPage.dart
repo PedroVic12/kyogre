@@ -11,39 +11,38 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CartPage'),
+        title: const Text('CartPage'),
       ),
       body: ListView(
         children: [
           SingleChildScrollView(
             child: Center(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
                     //h1
-                    Text('Pedidos do Cliente'),
+                    const Text('Pedidos do Cliente'),
 
                     //Cards dos produtos selecionados
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Column(
                         children: [
-                          const ProductCard(
+                          ProductCard(
                             productName: 'Pizza',
                             productImage: "Imagens/pizza.png",
                             productDescription: '8 Fatias',
                             productPrice: 50,
                           ),
-                          const ProductCard(
+                          ProductCard(
                             productName: 'Refrigerante',
                             productImage: "Imagens/drink.png",
                             productDescription: '8 Fatias',
                             productPrice: 50,
                           ),
-                          const ProductCard(
+                          ProductCard(
                             productName: 'Hamburguer',
                             productImage: "Imagens/burger.png",
                             productDescription: '8 Fatias',
@@ -55,10 +54,10 @@ class CartPage extends StatelessWidget {
 
                     //Card Mostrando os pedidos
                     Padding(
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 30),
                       child: Container(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                             color: Colors.blue,
                             borderRadius: BorderRadius.circular(10),
@@ -70,13 +69,13 @@ class CartPage extends StatelessWidget {
                                 offset: const Offset(0, 3),
                               ),
                             ]),
-                        child: Column(
+                        child: const Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.symmetric(vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Itens do Carrinho',
@@ -102,7 +101,7 @@ class CartPage extends StatelessWidget {
                               padding: EdgeInsets.symmetric(vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Total a compra: ',
@@ -128,7 +127,7 @@ class CartPage extends StatelessWidget {
                               padding: EdgeInsets.symmetric(vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Custo de Delivery',
@@ -154,7 +153,7 @@ class CartPage extends StatelessWidget {
                               padding: EdgeInsets.symmetric(vertical: 10),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Total a compra: ',

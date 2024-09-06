@@ -42,9 +42,9 @@ class AdicionarVendaPage extends StatelessWidget {
                       isExpanded: true,
                       items: controller_cliente.opcoesServicos
                           .map((servico) => DropdownMenuItem(
-                        value: servico,
-                        child: Text(servico),
-                      ))
+                                value: servico,
+                                child: Text(servico),
+                              ))
                           .toList(),
                       onChanged: (servico) {
                         if (servico != null) {
@@ -53,14 +53,14 @@ class AdicionarVendaPage extends StatelessWidget {
                       },
                       value: null,
                     ),
-
                     Wrap(
                       children: controller_cliente.servicos
                           .map((servico) => Chip(
-                        label: Text(servico),
-                        onDeleted: () =>
-                            controller_cliente.removeServico(controller_cliente.servicos.indexOf(servico)),
-                      ))
+                                label: Text(servico),
+                                onDeleted: () => controller_cliente
+                                    .removeServico(controller_cliente.servicos
+                                        .indexOf(servico)),
+                              ))
                           .toList(),
                     ),
                   ],
@@ -90,15 +90,16 @@ class AdicionarVendaPage extends StatelessWidget {
 
               Row(
                 children: [
-                  Checkbox(value: false, onChanged: (value) {
-                    print('Clicou no checkbox');
-                  },),
-                  
+                  Checkbox(
+                    value: false,
+                    onChanged: (value) {
+                      print('Clicou no checkbox');
+                    },
+                  ),
                   Text('Ja esta adicionado?')
                 ],
               ),
 
-              
               //Padding(
               //padding: const EdgeInsets.all(8.0),
               //child: TextFormField(
@@ -123,8 +124,8 @@ class AdicionarVendaPage extends StatelessWidget {
                         Get.back();
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.green, // background
-                        onPrimary: Colors.white, // foreground
+                        backgroundColor: Colors.green, // background
+                        foregroundColor: Colors.white, // foreground
                       ),
                     ),
                   ),
@@ -135,8 +136,8 @@ class AdicionarVendaPage extends StatelessWidget {
                       print('Refazendo o formulario');
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red, // background
-                      onPrimary: Colors.white, // foreground
+                      backgroundColor: Colors.red, // background
+                      foregroundColor: Colors.white, // fo/ foreground
                     ),
                   ),
                 ],

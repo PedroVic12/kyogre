@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key, required this.onChanged, this.validator}) : super(key: key);
+class SearchBarWidget extends StatelessWidget {
+  const SearchBarWidget({Key? key, required this.onChanged, this.validator})
+      : super(key: key);
 
   final void Function(String) onChanged;
   final String? Function(String?)? validator;
@@ -24,7 +25,8 @@ class SearchBar extends StatelessWidget {
           borderSide: const BorderSide(color: Colors.black),
         ),
         hintStyle: const TextStyle(color: Colors.black),
-        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       ),
       validator: validator,
       onChanged: onChanged,
