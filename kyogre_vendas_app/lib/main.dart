@@ -7,7 +7,7 @@ import 'package:kyogre_vendas_app/app/models/Appoinment.dart';
 import 'package:kyogre_vendas_app/app/views/pages/AddProduto.dart';
 import 'package:kyogre_vendas_app/app/views/pages/AgendamentoPage.dart';
 import 'package:kyogre_vendas_app/app/views/pages/HomePage.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'app/controllers/ClienteController.dart';
 
 void main() {
@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+      supportedLocales: [const Locale('en'), const Locale('pt')],
 
       // initialRoute: '/',
       // routes: {

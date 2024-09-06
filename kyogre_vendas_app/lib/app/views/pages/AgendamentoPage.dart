@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'WeekDatePicker.dart';
+
 class ProductCard extends StatelessWidget {
   final String productName;
   final String productImage;
@@ -192,6 +194,11 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
+          ShowCalendario(),
+          Container(
+            child: WeekAvailabilityWidget(),
+            height: 400,
+          ),
           _buildDiaDaSemanaSelection(),
           const SizedBox(height: 16.0),
           _buildNomePetField(),
