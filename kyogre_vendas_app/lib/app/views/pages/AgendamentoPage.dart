@@ -9,6 +9,7 @@ class ProductCard extends StatelessWidget {
   final String productDescription;
   final double productPrice;
   final bool isSelected;
+
   final VoidCallback
       onTap; // Adicione uma função para ser chamada quando o card for tocado
 
